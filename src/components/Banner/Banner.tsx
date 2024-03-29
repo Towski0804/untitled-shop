@@ -3,7 +3,7 @@ import arrow_icon from "../../assets/arrow.png";
 import hero_image from "../../assets/hero_image.png";
 export const Banner = () => {
   return (
-    <div className="banner flex h-[100vh] bg-gradient-to-b from-fuchsia-100 to-white">
+    <div className="banner flex h-[100vh] bg-gradient-to-b from-fuchsia-100 to-white overflow-hidden">
       <div className="banner-left flex-1 flex flex-col justify-center gap-5 pl-[130px]">
         <h2 className="text-slate-900 text-[26px] font-bold">
           NEW ARRIVALS ONLY
@@ -22,7 +22,7 @@ export const Banner = () => {
         </div>
       </div>
       <div className="banner-right flex flex-1 items-center justify-center">
-        <img src={hero_image} alt="hero_image" />
+        <img src={hero_image} alt="hero_image" className="w-[80%]" />
       </div>
     </div>
   );
