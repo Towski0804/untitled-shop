@@ -13,7 +13,7 @@ export const Popular: React.FC = () => {
         {data_product.map((item, index) => {
           return (
             <Item
-              key={item.id}
+              key={index}
               name={item.name}
               img={item.image}
               new_price={item.new_price}
