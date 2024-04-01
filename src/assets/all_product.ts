@@ -325,4 +325,3 @@ export const all_product = [
     old_price: 120.5,
   },
 ];
-

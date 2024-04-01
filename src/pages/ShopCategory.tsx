@@ -9,7 +9,7 @@ interface ShopCategoryProps {
 }
 
 export const ShopCategory: React.FC<ShopCategoryProps> = (props) => {
-  const { all_product } = useContext(ShopContext);
+  const { all_product } = useContext(ShopContext) ?? {};
   return (
     <div className="shop-category">
       <img src={props.banner} alt="" />
@@ -21,7 +21,7 @@ export const ShopCategory: React.FC<ShopCategoryProps> = (props) => {
           Sort by <img src={dropdown_icon} alt="" />
         </div>
         <div className="shop-category-products">
-          {all_product.map((item, index) => {
+          {all_product?.map((item, index) => {
             if (props.category === item.category) {
               return (
                 <Item

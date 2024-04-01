@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Navbar } from "./components/Navbar/Navbar.tsx";
 import { Shop } from "./pages/Shop.tsx";
-import { ShopCategory } from "./pages/ShopCategory.tsx";
+import { ShopCategory } from "./pages/ShopCategory.jsx";
 import { Product } from "./pages/Product.tsx";
 import { Cart } from "./pages/Cart.tsx";
 import { LoginSignUp } from "./pages/Login-SignUp.tsx";
