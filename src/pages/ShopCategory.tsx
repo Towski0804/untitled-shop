@@ -28,6 +28,7 @@ export const ShopCategory: React.FC<ShopCategoryProps> = (props) => {
             return (
               <Item
                 key={index}
+                id={item.id}
                 name={item.name}
                 img={item.image}
                 new_price={item.new_price}

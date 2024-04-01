@@ -31,7 +31,7 @@ export const App = () => {
             element={<ShopCategory banner={banner_kids} category="kid" />}
           />
           <Route path="/product" element={<Product />}>
-            <Route path="/product/:productID" element={<Product />} />
+            <Route path=":productID" element={<Product />} />
           </Route>
           <Route path="/cart" element={<Cart />} />
           <Route path="/login" element={<LoginSignUp />} />

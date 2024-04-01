@@ -10,6 +10,7 @@ export const NewCollections = () => {
         {new_collections.map((item, index) => (
           <Item
             key={index}
+            id={item.id}
             name={item.name}
             img={item.image}
             new_price={item.new_price}

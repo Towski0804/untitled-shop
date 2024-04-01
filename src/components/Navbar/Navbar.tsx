@@ -7,10 +7,10 @@ export const Navbar: React.FC = () => {
   const [menu, setMenu] = useState<string>("Shop");
   return (
     <div className="navbar flex p-4 gap-12 text-lg font-medium shadow-md justify-around">
-      <div className="nav-logo flex items-center gap-3">
+      <Link className="nav-logo flex items-center gap-3" to="/">
         <img src={logo} alt="logo" className="w-[40px]" />
         <p className="text-slate-900 text-3xl">Untitled Shop</p>
-      </div>
+      </Link>
       <ul className="nav-menu flex items-center list-none gap-12 font-medium text-amber-800">
         {["Shop", "Men", "Women", "Kids"].map((item, index) => (
           <li
