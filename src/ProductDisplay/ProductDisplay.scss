@@ -1,0 +1,17 @@
+.pd-thumbnails {
+  > img {
+    @apply w-[90px];
+  }
+}
+
+.pd-right-sizes {
+  > div {
+    @apply py-4 px-6 rounded cursor-pointer bg-gray-100;
+  }
+}
+
+.pd-right-category {
+  > span {
+    @apply font-semibold;
+  }
+}

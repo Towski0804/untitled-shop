@@ -10,10 +10,10 @@ interface ItemProps {
 }
 
 export const Item: React.FC<ItemProps> = (props) => {
-  const { img, name, old_price, new_price } = props;
+  const { id, img, name, old_price, new_price } = props;
   return (
     <div className="item w-[300px]">
-      <Link to={`/product/${props.id}`}>
+      <Link to={`/product/${id}`}>
         <img src={img} alt="" className=" hover:scale-105 duration-500" />
       </Link>
       <p className="my-[6px]">{name}</p>
