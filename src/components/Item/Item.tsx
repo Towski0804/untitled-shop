@@ -14,7 +14,12 @@ export const Item: React.FC<ItemProps> = (props) => {
   return (
     <div className="item w-[300px]">
       <Link to={`/product/${id}`}>
-        <img src={img} alt="" className=" hover:scale-105 duration-500" />
+        <img
+          src={img}
+          alt=""
+          className=" hover:scale-105 duration-500"
+          onClick={() => window.scrollTo(0, 0)}
+        />
       </Link>
       <p className="my-[6px]">{name}</p>
       <div className="item-prices flex gap-5">
