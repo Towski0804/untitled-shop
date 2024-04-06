@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import start_icon from "../assets/star_icon.png";
 import start_dull_icon from "../assets/star_dull_icon.png";
 import "./ProductDisplay.scss";
+import { ShopContext } from "../components/Context/ShopContext";
 
 interface ProductDisplayProps {
   product: Product;
@@ -10,6 +11,7 @@ interface ProductDisplayProps {
 export const ProductDisplay: React.FC<ProductDisplayProps> = (props) => {
   const { id, name, category, image, old_price, new_price, description } =
     props.product;
+  const { addToCart, cartItems } = useContext(ShopContext);
   return (
     <div className="pd flex mt-5 mx-[150px] w-4/5">
       <div className="pd-left flex gap-5 self-start shrink-0 ">
@@ -51,7 +53,12 @@ export const ProductDisplay: React.FC<ProductDisplayProps> = (props) => {
             <div>2XL</div>
           </div>
         </div>
-        <button className="py-5 px-10 w-[200px] text-base font-semibold text-white bg-red-400 mb-10 border-none outline-none">
+        <button
+          className="py-5 px-10 w-[200px] text-base font-semibold text-white bg-red-400 mb-10 border-none outline-none"
+          onClick={() => {
+            addToCart(id);
+          }}
+        >
           ADD TO CART
         </button>
         <p className="pd-right-category mt-3">

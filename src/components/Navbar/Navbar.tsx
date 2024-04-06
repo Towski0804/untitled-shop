@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import logo from "../../assets/logo.png";
 import cart_icon from "../../assets/cart_icon.png";
 import { Link } from "react-router-dom";
+import { ShopContext } from "../Context/ShopContext";
 
 export const Navbar: React.FC = () => {
   const [menu, setMenu] = useState<string>("Shop");
+  const { getTotalCartItems } = useContext(ShopContext);
   return (
     <div className="navbar flex p-4 gap-12 text-lg font-medium shadow-md justify-around">
       <Link className="nav-logo flex items-center gap-3" to="/">
@@ -21,8 +23,10 @@ export const Navbar: React.FC = () => {
             key={index}
           >
             <Link to={item === "Shop" ? "/" : `/${item}`}>{item}</Link>
-            {menu === item && (
+            {menu === item ? (
               <hr className="b-1 w-[80%] h-[3px] bg-red-600 rounded-lg"></hr>
+            ) : (
+              <hr className="b-1 h-[3px] w-[80%] bg-transparent border-transparent"></hr>
             )}
           </li>
         ))}
@@ -37,7 +41,7 @@ export const Navbar: React.FC = () => {
           <div className="nav-cart-count relative">
             <img src={cart_icon} alt="cart_icon" className="w-[40px]" />
             <div className="flex absolute w-[22px] h-[22px] justify-center items-center rounded-full bg-red-500 text-white text-sm top-[-8px] right-[-10px]">
-              0
+              {getTotalCartItems()}
             </div>
           </div>
         </Link>
