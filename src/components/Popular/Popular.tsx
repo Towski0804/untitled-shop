@@ -4,18 +4,12 @@ import { Item } from "../Item/Item";
 
 export const Popular: React.FC = () => {
   return (
-    <div
-      className="popular flex flex-col items-center gap-3 h-[90vh] pt-10 
-      max-xl:h-[70vh]
-      max-lg:h-[60vh]
-      max-md:h-[50vh]
-      max-sm:h-[90vh]"
-    >
+    <div className="popular flex flex-col items-center gap-3 pt-10 mb-10">
       <h1
         className="text-zinc-800 text-5xl font-semibold 
-      max-xl:text-4xl
-      max-lg:text-3xl
-      max-md:text-xl"
+      max-xl:text-4xl max-xl:mb-8
+      max-lg:text-3xl max-lg:mb-5
+      max-md:text-xl max-md:mb-3"
       >
         POPULAR ITEMS FOR WOMEN
       </h1>
