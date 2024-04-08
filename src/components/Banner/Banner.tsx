@@ -3,7 +3,7 @@ import arrow_icon from "../../assets/arrow.png";
 import hero_image from "../../assets/hero_image.png";
 export const Banner = () => {
   return (
-    <div className="banner flex h-[100vh] bg-gradient-to-b from-fuchsia-100 to-white overflow-hidden max-sm:flex-col">
+    <div className="banner flex min-h-[50vh] bg-gradient-to-b from-fuchsia-100 to-white overflow-hidden max-sm:flex-col">
       <div className="banner-left flex-1 flex flex-col justify-center gap-5 pl-[130px] max-xl:pl-[100px] max-lg:pl-[80px] max-md:pl-[30px]">
         <h2 className="text-[26px] font-bold max-xl:text-[22px] max-lg:text-[20px] max-md:text-base max-sm:text-lg">
           NEW ARRIVALS ONLY
@@ -41,7 +41,7 @@ export const Banner = () => {
         <img
           src={hero_image}
           alt="hero_image"
-          className="w-[600px] max-xl:w-[500px] max-lg:w-[400px] max-md:w-[300px]"
+          className="w-[550px] max-xl:w-[500px] max-lg:w-[400px] max-md:w-[300px]"
         />
       </div>
     </div>
