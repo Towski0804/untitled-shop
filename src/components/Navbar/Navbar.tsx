@@ -30,7 +30,7 @@ export const Navbar: React.FC = () => {
         alt=""
         onClick={dropdown_toggle}
         className={clsx(
-          "hidden w-[10px] cursor-pointer max-md:block max-md:w-7 max-md:rotate-[-90deg] max-md:duration-500",
+          "hidden w-[10px] cursor-pointer rotate-[-90deg] max-md:block max-md:w-7 max-md:duration-500",
           navMenuVisible ? "max-md:rotate-0" : "",
         )}
       />
