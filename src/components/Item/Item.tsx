@@ -12,7 +12,7 @@ interface ItemProps {
 export const Item: React.FC<ItemProps> = (props) => {
   const { id, img, name, old_price, new_price } = props;
   return (
-    <div className="item w-[280px] max-xl:w-[220px] max-xl:text-base max-lg:w-[170px] max-lg:text-sm max-md:w-[120px] max-md:text-[13px] max-sm:w-[160px]">
+    <div className="item w-[280px] m-auto max-xl:w-[220px] max-xl:text-base max-lg:w-[170px] max-lg:text-sm max-md:w-[120px] max-md:text-[13px] max-sm:w-[160px]">
       <Link to={`/product/${id}`}>
         <img
           src={img}
