@@ -1,5 +1,8 @@
 .caritems-format-main {
-  @apply grid grid-cols-[1fr_4fr_1fr_1fr_1fr_1fr] items-center gap-10 py-5 text-gray-600 font-semibold text-sm justify-center;
+  @apply grid grid-cols-[1fr_4fr_1fr_1fr_1fr_1fr] items-center gap-10 py-5 text-gray-600 font-semibold text-lg justify-center
+  max-xl:grid-cols-[1fr_6fr_1fr_1fr_1fr_1fr] max-xl:gap-5 max-xl:py-4 max-xl:text-base
+  max-md:text-xs max-md:gap-3 max-md:py-3
+  max-sm:grid-cols-[1fr_6fr_1fr];
 }
 
 .cartitems-total-items {

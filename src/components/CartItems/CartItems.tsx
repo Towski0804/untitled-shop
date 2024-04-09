@@ -9,8 +9,15 @@ export const CartItems = () => {
   const { cartItems, removeFromCart, getTotalCartAmount } =
     useContext(ShopContext);
   return (
-    <div className="cartitems my-[100px] mx-[170px]">
-      <div className="caritems-format-main">
+    <div
+      className="cartitems my-[100px] mx-[170px]
+    max-xl:m-[60px_50px]
+    max-md:mx-8"
+    >
+      <div
+        className="caritems-format-main
+      max-sm:hidden"
+      >
         <p>Products</p>
         <p>Title</p>
         <p>Price</p>
@@ -18,16 +25,24 @@ export const CartItems = () => {
         <p>Total</p>
         <p>Remove</p>
       </div>
-      <hr className="h-[3px] bg-[#e2e2e2]" />
+      <hr className="h-[2px] bg-[#e2e2e2]" />
       {all_product.map((p, i) => {
         if (cartItems[p.id] > 0)
           return (
             <div>
               <div className="cartitems-format caritems-format-main" key={i}>
-                <img src={p.image} alt="" className="product-icon w-[62px]" />
+                <img
+                  src={p.image}
+                  alt=""
+                  className="product-icon h-[75px] object-cover
+                max-xl:h-[50px]"
+                />
                 <p>{p.name}</p>
                 <p>${p.new_price}</p>
-                <button className="cartitems-quantity">
+                <button
+                  className="cartitems-quantity border
+                max-xl:w-10 max-xl:h-8"
+                >
                   {cartItems[p.id]}
                 </button>
                 <p>${p.new_price * cartItems[p.id]}</p>
@@ -37,20 +52,28 @@ export const CartItems = () => {
                   onClick={() => {
                     removeFromCart(p.id);
                   }}
-                  className="w-[15px] mx-4 cursor-pointer"
+                  className="w-[15px] mx-4 cursor-pointer
+                  max-xl:m-auto"
                 />
               </div>
+              <hr className="h-[2px] bg-[#e2e2e2]" />
             </div>
           );
         return null;
       })}
-      <div className="cartitems-down flex my-[100px]">
-        <div className="cartitems-total flex-1 flex flex-col mr-[200px]">
+      <div
+        className="cartitems-down flex my-[100px]
+      max-xl:my-10 max-xl:flex-col max-lg:gap-10"
+      >
+        <div
+          className="cartitems-total flex-1 flex flex-col mr-[200px]
+        max-xl:m-0"
+        >
           <h1>Cart Totals</h1>
           <div>
             <div className="cartitems-total-items">
               <p>Subtotal</p>
-              <p>{getTotalCartAmount()}</p>
+              <p>${getTotalCartAmount()}</p>
             </div>
             <hr />
             <div className="cartitems-total-items">
@@ -63,15 +86,27 @@ export const CartItems = () => {
               <h3>${getTotalCartAmount()}</h3>
             </div>
           </div>
-          <button className="w-[262px] h-[58px] outline-none border-none bg-red-400 text-white text-base font-semibold cursor-pointer">
+          <button
+            className="w-[262px] h-[58px] outline-none border-none bg-red-400 text-white text-base font-semibold cursor-pointer
+          max-xl:max-w-[200px] max-xl:h-[45px] max-xl:text-sm"
+          >
             Proceed to Checkout
           </button>
         </div>
         <div className="cartitems-promocode flex-1 font-medium">
           <p>If you have a promo code, Enter it here!</p>
-          <div className="cartitems-codebox w-[504px] mt-4 h-[58px]">
-            <Input type="text" placeholder="promo code" className="h-[58px]" />
-            <button className="w-[170px] h-[58px] bg-black text-white">
+          <div className="cartitems-codebox mt-4 h-[58px]">
+            <Input
+              type="text"
+              placeholder="promo code"
+              className="h-[58px]
+            max-md:w-[200px]"
+            />
+            <button
+              className="w-[170px] h-[58px] bg-black text-white
+            max-xl:w-[120px]
+            max-md:w-[80px]"
+            >
               Apply
             </button>
           </div>
