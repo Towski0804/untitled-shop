@@ -1,6 +1,10 @@
 export const DescriptionBox = () => {
   return (
-    <div className="descriptionbox my-[70px] mx-[170px]">
+    <div
+      className="descriptionbox my-[70px] mx-[170px]
+    max-xl:m-[70px]
+    max-md:m-[60px_20px]"
+    >
       <div className="nav flex">
         <div className="nav-box flex items-center justify-center text-base font-semibold w-[170px] h-[70px] border border-gray-400">
           Description
@@ -9,7 +13,10 @@ export const DescriptionBox = () => {
           Reviews(122)
         </div>
       </div>
-      <div className="descriptionbox-desc flex flex-col gap-6 p-12 pb-16 border border-gray-400">
+      <div
+        className="descriptionbox-desc flex flex-col gap-6 p-12 pb-16 border border-gray-400
+      max-md:text-sm max-md:p-6"
+      >
         <p>
           An e-commerce platform is a virtual marketplace on the internet where
           buying and selling of products or services take place. It acts as an
