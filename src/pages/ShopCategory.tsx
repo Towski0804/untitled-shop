@@ -1,15 +1,15 @@
-import React, { useContext } from "react";
-import { ShopContext } from "../components/Context/ShopContext";
-import dropdown_icon from "../assets/dropdown_icon.png";
-import { Item } from "../components/Item/Item";
+import React, { useContext } from "react"
+import { ShopContext } from "../components/Context/ShopContext"
+import dropdown_icon from "../assets/dropdown_icon.png"
+import { Item } from "../components/Item/Item"
 
 interface ShopCategoryProps {
-  banner: string;
-  category: string;
+  banner: string
+  category: string
 }
 
 export const ShopCategory: React.FC<ShopCategoryProps> = (props) => {
-  const { all_product } = useContext(ShopContext) ?? {};
+  const { all_product } = useContext(ShopContext) ?? {}
   return (
     <div className="shop-category flex flex-col items-center">
       <img
@@ -25,8 +25,7 @@ export const ShopCategory: React.FC<ShopCategoryProps> = (props) => {
       max-md:w-[95%] "
       >
         <p>
-          <span className="font-semibold">Showing 1 - 12</span> out of 36
-          products
+          <span>Showing 1 - 12</span> out of 36 products
         </p>
         <div
           className="shop-category-sort flex items-center p-[10px_20px] rounded-[40px] border-neutral-600 border-2
@@ -52,9 +51,9 @@ export const ShopCategory: React.FC<ShopCategoryProps> = (props) => {
                 new_price={item.new_price}
                 old_price={item.old_price}
               />
-            );
+            )
           } else {
-            return null;
+            return null
           }
         })}
       </div>
@@ -66,5 +65,5 @@ export const ShopCategory: React.FC<ShopCategoryProps> = (props) => {
         Explore More
       </div>
     </div>
-  );
-};
+  )
+}
