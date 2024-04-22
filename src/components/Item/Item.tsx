@@ -1,16 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Link } from "react-router-dom"
 
 interface ItemProps {
-  id: number;
-  img: string;
-  name: string;
-  old_price: number;
-  new_price: number;
+  id: string
+  img: string
+  name: string
+  old_price: number
+  new_price: number
 }
 
 export const Item: React.FC<ItemProps> = (props) => {
-  const { id, img, name, old_price, new_price } = props;
+  const { id, img, name, old_price, new_price } = props
   return (
     <div className="item w-[280px] m-auto max-xl:w-[220px] max-xl:text-base max-lg:w-[170px] max-lg:text-sm max-md:w-[120px] max-md:text-[13px] max-sm:w-[160px]">
       <Link to={`/product/${id}`}>
@@ -31,5 +31,5 @@ export const Item: React.FC<ItemProps> = (props) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
