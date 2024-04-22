@@ -1,13 +1,12 @@
-import { useContext } from "react";
-import { ShopContext } from "../Context/ShopContext";
-import remove_icon from "../../assets/cart_cross_icon.png";
-import { all_product } from "../../assets/all_product";
-import { Input } from "../lib/Input";
-import "./CartItems.scss";
+import { useContext } from "react"
+import { ShopContext } from "../Context/ShopContext"
+import remove_icon from "../../assets/cart_cross_icon.png"
+import { Input } from "../lib/Input"
+import "./CartItems.scss"
 
 export const CartItems = () => {
-  const { cartItems, removeFromCart, getTotalCartAmount } =
-    useContext(ShopContext);
+  const { all_product, cartItems, removeFromCart, getTotalCartAmount } =
+    useContext(ShopContext)
   return (
     <div
       className="cartitems my-[100px] mx-[170px]
@@ -27,10 +26,10 @@ export const CartItems = () => {
       </div>
       <hr className="h-[2px] bg-[#e2e2e2]" />
       {all_product.map((p, i) => {
-        if (cartItems[p.id] > 0)
+        if (cartItems[p._id] > 0)
           return (
-            <div>
-              <div className="cartitems-format caritems-format-main" key={i}>
+            <div key={i}>
+              <div className="cartitems-format caritems-format-main">
                 <img
                   src={p.image}
                   alt=""
@@ -43,14 +42,14 @@ export const CartItems = () => {
                   className="cartitems-quantity border
                 max-xl:w-10 max-xl:h-8"
                 >
-                  {cartItems[p.id]}
+                  {cartItems[p._id]}
                 </button>
-                <p>${p.new_price * cartItems[p.id]}</p>
+                <p>${p.new_price * cartItems[p._id]}</p>
                 <img
                   src={remove_icon}
                   alt=""
                   onClick={() => {
-                    removeFromCart(p.id);
+                    removeFromCart(p._id)
                   }}
                   className="w-[15px] mx-4 cursor-pointer
                   max-xl:m-auto"
@@ -58,8 +57,8 @@ export const CartItems = () => {
               </div>
               <hr className="h-[2px] bg-[#e2e2e2]" />
             </div>
-          );
-        return null;
+          )
+        return null
       })}
       <div
         className="cartitems-down flex my-[100px]
@@ -113,5 +112,5 @@ export const CartItems = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

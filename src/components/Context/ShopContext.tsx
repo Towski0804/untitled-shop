@@ -3,9 +3,9 @@ import { ajax } from "../../lib/ajax"
 
 interface ShopContextType {
   all_product: Product[]
-  cartItems: Record<number, number>
-  addToCart: (id: number) => void
-  removeFromCart: (id: number) => void
+  cartItems: Record<string, number>
+  addToCart: (id: string) => void
+  removeFromCart: (id: string) => void
   getTotalCartAmount: () => number
   getTotalCartItems: () => number
 }
@@ -25,19 +25,19 @@ interface ShopContextProviderProps {
 const ShopContextProvider: React.FC<
   React.PropsWithChildren<ShopContextProviderProps>
 > = (props) => {
-  const [all_product, setAllProduct] = useState([])
+  const [all_product, setAllProduct] = useState<Product[]>([])
   useEffect(() => {
     ajax.get("/product").then((res) => setAllProduct(res.data))
   }, [])
-  const [cartItems, setCartItems] = useState<Record<number, number>>({})
-  const addToCart = (id: number) => {
+  const [cartItems, setCartItems] = useState<Record<string, number>>({})
+  const addToCart = (id: string) => {
     setCartItems((prev) => {
       const cartItems = { ...prev }
       cartItems[id] = cartItems[id] + 1 || 1
       return cartItems
     })
   }
-  const removeFromCart = (id: number) => {
+  const removeFromCart = (id: string) => {
     setCartItems((prev) => {
       const cartItems = { ...prev }
       if (cartItems[id] > 1) {
@@ -51,16 +51,16 @@ const ShopContextProvider: React.FC<
 
   const getTotalCartAmount = () => {
     return Object.keys(cartItems).reduce((acc, id) => {
-      const product = all_product.find((p) => p.id === parseInt(id))
+      const product = all_product.find((p) => p._id === id)
       if (product) {
-        return acc + product.new_price * cartItems[parseInt(id)]
+        return acc + product.new_price * cartItems[id]
       }
       return acc
     }, 0)
   }
   const getTotalCartItems = () => {
     return Object.keys(cartItems).reduce((acc, id) => {
-      return acc + cartItems[parseInt(id)]
+      return acc + cartItems[id]
     }, 0)
   }
 

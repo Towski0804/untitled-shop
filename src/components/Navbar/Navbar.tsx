@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react"
 import logo from "../../assets/logo.png"
 import cart_icon from "../../assets/cart_icon.png"
 import dropdown_icon from "../../assets/drop_down.png"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { ShopContext } from "../Context/ShopContext"
 import clsx from "clsx"
 
@@ -17,12 +17,13 @@ export const Navbar: React.FC = () => {
     setNavMenuVisible(!navMenuVisible)
     e.currentTarget.classList.toggle("open")
   }
-
+  const nav = useNavigate()
   return (
     <div className="navbar flex p-4 gap-12 text-lg font-medium shadow-md items-center justify-around max-xl:p-[12px_50px] max-lg:p-[12px_30px] max-md:p-[10px_0px] max-sm:p-[8px_0] max-sm:gap-0">
       <Link
         className="nav-logo flex items-center gap-3 max-sm:scale-75 max-sm:gap-0"
         to="/"
+        onClick={() => setMenu("Shop")}
       >
         <img src={logo} alt="logo" className="w-[50px] max-xl:w-[40px]" />
         <p className="text-slate-900 text-3xl max-xl:text-2xl max-md:text-lg">
@@ -62,7 +63,7 @@ export const Navbar: React.FC = () => {
         ))}
       </ul>
       <div className="nav-login-cart flex items-center gap-[45px] max-xl:gap-7 max-sm:scale-[0.8]">
-        <Link to={`${loggedIn ? "/" : "/login"}`}>
+        <Link to={`${loggedIn ? "/" : "/login"}`} onClick={() => setMenu("")}>
           <button
             className="w-[160px] h-[60px] bg-white outline-none border border-gray-400 cursor-pointer rounded-3xl active:bg-slate-300 max-xl:w-[120px] max-xl:h-[45px] max-xl:text-base max-lg:w-[80px] max-lg:h-[35px] max-lg:text-sm"
             onClick={
@@ -70,6 +71,7 @@ export const Navbar: React.FC = () => {
                 ? () => {
                     localStorage.removeItem("auth-token")
                     setLoggedIn(false)
+                    nav("/")
                   }
                 : undefined
             }
@@ -77,7 +79,7 @@ export const Navbar: React.FC = () => {
             {loggedIn ? "Logout" : "Login"}
           </button>
         </Link>
-        <Link to={"/cart"}>
+        <Link to={"/cart"} onClick={() => setMenu("")}>
           <div className="nav-cart-count relative">
             <img
               src={cart_icon}

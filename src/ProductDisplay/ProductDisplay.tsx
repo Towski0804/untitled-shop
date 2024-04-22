@@ -1,17 +1,16 @@
-import React, { useContext } from "react";
-import start_icon from "../assets/star_icon.png";
-import start_dull_icon from "../assets/star_dull_icon.png";
-import "./ProductDisplay.scss";
-import { ShopContext } from "../components/Context/ShopContext";
+import React, { useContext } from "react"
+import start_icon from "../assets/star_icon.png"
+import start_dull_icon from "../assets/star_dull_icon.png"
+import "./ProductDisplay.scss"
+import { ShopContext } from "../components/Context/ShopContext"
 
 interface ProductDisplayProps {
-  product: Product;
+  product: Product
 }
 
 export const ProductDisplay: React.FC<ProductDisplayProps> = (props) => {
-  const { id, name, category, image, old_price, new_price, description } =
-    props.product;
-  const { addToCart, cartItems } = useContext(ShopContext);
+  const { _id, name, image, old_price, new_price, description } = props.product
+  const { addToCart } = useContext(ShopContext)
   return (
     <div
       className="pd flex mt-5 mx-[150px] overflow-clip
@@ -125,7 +124,7 @@ export const ProductDisplay: React.FC<ProductDisplayProps> = (props) => {
           max-md:w-[100px] max-md:text-xs
           max-sm:w-[130px] max-sm:text-sm max-sm:p-[12px_0px]"
           onClick={() => {
-            addToCart(id);
+            addToCart(_id)
           }}
         >
           ADD TO CART
@@ -146,5 +145,5 @@ export const ProductDisplay: React.FC<ProductDisplayProps> = (props) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
