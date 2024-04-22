@@ -1,8 +1,14 @@
-import React from "react";
-import { data_product } from "../../assets/data";
-import { Item } from "../Item/Item";
+import React, { useEffect, useState } from "react"
+import { Item } from "../Item/Item"
+import { ajax } from "../../lib/ajax"
 
 export const Popular: React.FC = () => {
+  const [popular_product, setPopularProduct] = useState<Product[]>([])
+  useEffect(() => {
+    ajax.get("/popular/women").then((res) => {
+      setPopularProduct(res.data)
+    })
+  }, [])
   return (
     <div className="popular flex flex-col items-center gap-3 pt-10 mb-10">
       <h1
@@ -26,19 +32,19 @@ export const Popular: React.FC = () => {
       max-md:gap-[5px]
       max-sm:grid max-sm:grid-cols-2 max-sm:gap-5"
       >
-        {data_product.map((item, index) => {
+        {popular_product.map((item, index) => {
           return (
             <Item
               key={index}
-              id={item.id}
+              id={item._id}
               name={item.name}
               img={item.image}
               new_price={item.new_price}
               old_price={item.old_price}
             />
-          );
+          )
         })}
       </div>
     </div>
-  );
-};
+  )
+}
