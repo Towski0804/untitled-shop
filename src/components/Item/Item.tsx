@@ -21,7 +21,7 @@ export const Item: React.FC<ItemProps> = (props) => {
           onClick={() => window.scrollTo(0, 0)}
         />
       </Link>
-      <p className="my-[6px]">{name}</p>
+      <p className="my-[6px] min-h-[3em]">{name}</p>
       <div className="item-prices flex gap-5">
         <div className="item-price-new text-zinc-700 font-semibold">
           ${new_price}

@@ -1,7 +1,14 @@
-import { new_collections } from "../../assets/new_collections";
-import { Item } from "../Item/Item";
+import { ajax } from "../../lib/ajax"
+import { Item } from "../Item/Item"
+import { useEffect, useState } from "react"
 
 export const NewCollections = () => {
+  const [new_collections, setNewCollections] = useState<Product[]>([])
+  useEffect(() => {
+    ajax.get("/newcollections").then((res) => {
+      setNewCollections(res.data)
+    })
+  }, [])
   return (
     <div className="new-collections flex flex-col items-center gap-5 mb-[100px]">
       <h1
@@ -28,7 +35,7 @@ export const NewCollections = () => {
         {new_collections.map((item, index) => (
           <Item
             key={index}
-            id={item.id}
+            id={item._id}
             name={item.name}
             img={item.image}
             new_price={item.new_price}
@@ -37,5 +44,5 @@ export const NewCollections = () => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
