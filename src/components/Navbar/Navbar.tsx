@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react"
 import logo from "../../assets/logo.png"
 import cart_icon from "../../assets/cart_icon.png"
 import dropdown_icon from "../../assets/drop_down.png"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { ShopContext } from "../Context/ShopContext"
 import clsx from "clsx"
 
@@ -17,7 +17,6 @@ export const Navbar: React.FC = () => {
     setNavMenuVisible(!navMenuVisible)
     e.currentTarget.classList.toggle("open")
   }
-  const nav = useNavigate()
   return (
     <div className="navbar flex p-4 gap-12 text-lg font-medium shadow-md items-center justify-around max-xl:p-[12px_50px] max-lg:p-[12px_30px] max-md:p-[10px_0px] max-sm:p-[8px_0] max-sm:gap-0">
       <Link
@@ -70,8 +69,9 @@ export const Navbar: React.FC = () => {
               loggedIn
                 ? () => {
                     localStorage.removeItem("auth-token")
+
                     setLoggedIn(false)
-                    nav("/")
+                    window.location.replace("/")
                   }
                 : undefined
             }

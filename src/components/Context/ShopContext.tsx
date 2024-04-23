@@ -28,6 +28,23 @@ const ShopContextProvider: React.FC<
   const [all_product, setAllProduct] = useState<Product[]>([])
   useEffect(() => {
     ajax.get("/product").then((res) => setAllProduct(res.data))
+    if (localStorage.getItem("auth-token")) {
+      ajax
+        .post(
+          "/cartitems",
+          {},
+          {
+            headers: {
+              Accept: "application/form-data",
+              "auth-token": localStorage.getItem("auth-token"),
+              "Content-Type": "application/json"
+            }
+          }
+        )
+        .then((res) => {
+          setCartItems(res.data.cartData)
+        })
+    }
   }, [])
   const [cartItems, setCartItems] = useState<Record<string, number>>({})
   const addToCart = (id: string) => {
@@ -36,6 +53,24 @@ const ShopContextProvider: React.FC<
       cartItems[id] = cartItems[id] + 1 || 1
       return cartItems
     })
+    if (localStorage.getItem("auth-token")) {
+      ajax
+        .patch(
+          "/cartitems",
+          { itemID: id },
+          {
+            headers: {
+              Accept: "application/form-data",
+              "auth-token": localStorage.getItem("auth-token"),
+              "Content-Type": "application/json"
+            }
+          }
+        )
+        .then((res) => {
+          console.log(res.data.message)
+        })
+        .catch((err) => alert(err.response.data.error))
+    }
   }
   const removeFromCart = (id: string) => {
     setCartItems((prev) => {
@@ -47,6 +82,19 @@ const ShopContextProvider: React.FC<
       }
       return cartItems
     })
+    if (localStorage.getItem("auth-token")) {
+      ajax
+        .delete(`/cartitems/${id}`, {
+          headers: {
+            Accept: "application/form-data",
+            "auth-token": localStorage.getItem("auth-token"),
+            "Content-Type": "application/json"
+          }
+        })
+        .then((res) => {
+          console.log(res.data.message)
+        })
+    }
   }
 
   const getTotalCartAmount = () => {
