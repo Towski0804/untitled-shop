@@ -98,6 +98,7 @@ const ShopContextProvider: React.FC<
   }
 
   const getTotalCartAmount = () => {
+    if (!cartItems) return 0
     return Object.keys(cartItems).reduce((acc, id) => {
       const product = all_product.find((p) => p._id === id)
       if (product) {
@@ -107,6 +108,7 @@ const ShopContextProvider: React.FC<
     }, 0)
   }
   const getTotalCartItems = () => {
+    if (!cartItems) return 0
     return Object.keys(cartItems).reduce((acc, id) => {
       return acc + cartItems[id]
     }, 0)
