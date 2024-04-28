@@ -1,5 +1,4 @@
-import React from "react";
-import exclusive_image from "../../assets/exclusive_image.png";
+import exclusive_image from "../../assets/exclusive_image.png"
 
 export const Offers = () => {
   return (
@@ -54,5 +53,5 @@ export const Offers = () => {
         />
       </div>
     </div>
-  );
-};
+  )
+}

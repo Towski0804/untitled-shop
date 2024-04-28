@@ -1,7 +1,19 @@
-import { Item } from "../Item/Item";
-import { data_product } from "../../assets/data";
+import { Item } from "../Item/Item"
+import { ajax } from "../../lib/ajax"
+import { useEffect, useState } from "react"
 
-export const RelatedProducts = () => {
+type relatedProductsProps = {
+  category: string
+}
+
+export const RelatedProducts = (props: relatedProductsProps) => {
+  const category = props.category
+  const [related_products, setRelatedProducts] = useState<Product[]>([])
+  useEffect(() => {
+    ajax.get(`/newcollections/${category}`).then((res) => {
+      setRelatedProducts(res.data)
+    })
+  }, [])
   return (
     <div className="relatedproducts flex flex-col items-center gap-3 min-h-[90vh]">
       <h1
@@ -25,10 +37,10 @@ export const RelatedProducts = () => {
       max-md:gap-[5px]
       max-sm:grid max-sm:grid-cols-2 max-sm:gap-5"
       >
-        {data_product.map((item, index) => (
+        {related_products.map((item, index) => (
           <Item
             key={index}
-            id={item.id}
+            id={item._id}
             name={item.name}
             img={item.image}
             new_price={item.new_price}
@@ -37,5 +49,5 @@ export const RelatedProducts = () => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
