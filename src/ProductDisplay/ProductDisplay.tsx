@@ -105,16 +105,16 @@ export const ProductDisplay: React.FC<ProductDisplayProps> = (props) => {
           </h1>
           <div
             className="pd-right-sizes flex my-8 gap-5 
-          max-xl:[&>div]:p-[14px_20px] max-xl:gap-4
-          max-lg:my-3 max-lg:[&>div]:p-[10px_16px] max-lg:text-xs max-lg:gap-3
-          max-md:gap-2 max-md:[&>div]:p-[4px_11px]
-          max-sm:gap-[10px] max-sm:my-5 max-sm:[&>div]:p-[10px_16px] max-sm:text-sm"
+          max-xl:[&>button]:p-[14px_20px] max-xl:gap-4
+          max-lg:my-3 max-lg:[&>button]:p-[10px_16px] max-lg:text-xs max-lg:gap-3
+          max-md:gap-2 max-md:[&>button]:p-[4px_11px]
+          max-sm:gap-[10px] max-sm:my-5 max-sm:[&>button]:p-[10px_16px] max-sm:text-sm"
           >
-            <div>S</div>
-            <div>M</div>
-            <div>L</div>
-            <div>XL</div>
-            <div>2XL</div>
+            <button>S</button>
+            <button>M</button>
+            <button>L</button>
+            <button>XL</button>
+            <button>2XL</button>
           </div>
         </div>
         <button
