@@ -2,7 +2,13 @@ import { ajax } from "../../lib/ajax"
 import { Item } from "../Item/Item"
 import { useEffect, useState } from "react"
 
-export const NewCollections = () => {
+interface NewCollectionsProps {
+  newCollectionsRef: React.ForwardedRef<HTMLDivElement>
+}
+
+export const NewCollections: React.FC<NewCollectionsProps> = ({
+  newCollectionsRef
+}) => {
   const [new_collections, setNewCollections] = useState<Product[]>([])
   useEffect(() => {
     ajax.get("/newcollections").then((res) => {
@@ -10,7 +16,10 @@ export const NewCollections = () => {
     })
   }, [])
   return (
-    <div className="new-collections flex flex-col items-center gap-5 mb-[100px]">
+    <div
+      className="new-collections flex flex-col items-center gap-5 mb-[100px]"
+      ref={newCollectionsRef}
+    >
       <h1
         className="text-zinc-800 text-5xl font-semibold  
       max-xl:text-4xl
