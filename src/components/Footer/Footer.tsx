@@ -1,10 +1,10 @@
-import footer_logo from "../../assets/logo.png";
-import instagram_icon from "../../assets/instagram_icon.png";
-import pinterest_icon from "../../assets/pinterest_icon.png";
-import whatsapp_icon from "../../assets/whatsapp_icon.png";
+import footer_logo from "../../assets/logo.svg"
+import instagram_icon from "../../assets/instagram_icon.png"
+import pinterest_icon from "../../assets/pinterest_icon.png"
+import whatsapp_icon from "../../assets/whatsapp_icon.png"
 
 export const Footer = () => {
-  const icons = [instagram_icon, pinterest_icon, whatsapp_icon];
+  const icons = [instagram_icon, pinterest_icon, whatsapp_icon]
   return (
     <div className="footer flex flex-col justify-center items-center gap-12 mt-6 max-md:gap-5">
       <div className="flex items-center gap-10 max-md:flex-col max-md:gap-3">
@@ -33,7 +33,7 @@ export const Footer = () => {
             <li key={index} className="cursor-pointer">
               {link}
             </li>
-          ),
+          )
         )}
       </ul>
 
@@ -45,5 +45,5 @@ export const Footer = () => {
         </p>
       </div>
     </div>
-  );
-};
+  )
+}
