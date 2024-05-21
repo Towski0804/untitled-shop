@@ -5,10 +5,12 @@ import dropdown_icon from "../../assets/drop_down.svg"
 import { Link } from "react-router-dom"
 import { ShopContext } from "../Context/ShopContext"
 import clsx from "clsx"
+import { useMenuStore } from "../../stores/useMenuStore"
 
 export const Navbar: React.FC = () => {
-  const [menu, setMenu] = useState<string>("Shop")
+  // const [menu, setMenu] = useState<string>("Shop")
   const [navMenuVisible, setNavMenuVisible] = useState<boolean>(false)
+  const { menu, setMenu } = useMenuStore()
   const [loggedIn, setLoggedIn] = useState<boolean>(
     localStorage.getItem("auth-token") ? true : false
   )
