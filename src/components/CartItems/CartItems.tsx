@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { ShopContext } from "../Context/ShopContext"
-import remove_icon from "../../assets/cart_cross_icon.png"
+import remove_icon from "../../assets/cart_cross_icon.svg"
 import { Input } from "../lib/Input"
 import "./CartItems.scss"
 
@@ -51,7 +51,7 @@ export const CartItems = () => {
                   onClick={() => {
                     removeFromCart(p._id)
                   }}
-                  className="w-[15px] mx-4 cursor-pointer
+                  className="w-[16px] mx-4 cursor-pointer
                   max-xl:m-auto"
                 />
               </div>
@@ -61,7 +61,7 @@ export const CartItems = () => {
         return null
       })}
       <div
-        className="cartitems-down flex my-[100px]
+        className="cartitems-down flex my-[100px] space-y-4
       max-xl:my-10 max-xl:flex-col max-lg:gap-10"
       >
         <div

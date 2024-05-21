@@ -1,7 +1,7 @@
 import footer_logo from "../../assets/logo.svg"
-import instagram_icon from "../../assets/instagram_icon.png"
-import pinterest_icon from "../../assets/pinterest_icon.png"
-import whatsapp_icon from "../../assets/whatsapp_icon.png"
+import instagram_icon from "../../assets/instagram_icon.svg"
+import pinterest_icon from "../../assets/pinterest_icon.svg"
+import whatsapp_icon from "../../assets/whatsapp_icon.svg"
 
 export const Footer = () => {
   const icons = [instagram_icon, pinterest_icon, whatsapp_icon]
@@ -22,7 +22,11 @@ export const Footer = () => {
               className="footer-icons-container p-3 cursor-pointer"
               key={index}
             >
-              <img src={icon} alt="social media icons" className="max-md:w-5" />
+              <img
+                src={icon}
+                alt="social media icons"
+                className="w-8 max-md:w-5"
+              />
             </div>
           ))}
         </div>

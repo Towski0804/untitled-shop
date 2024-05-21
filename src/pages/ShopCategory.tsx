@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import { ShopContext } from "../components/Context/ShopContext"
-import dropdown_icon from "../assets/dropdown_icon.png"
+import dropdown_icon from "../assets/dropdown_icon.svg"
 import { Item } from "../components/Item/Item"
 
 interface ShopCategoryProps {

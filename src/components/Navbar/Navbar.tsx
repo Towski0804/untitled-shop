@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react"
 import logo from "../../assets/logo.svg"
 import cart_icon from "../../assets/cart_icon.svg"
-import dropdown_icon from "../../assets/drop_down.png"
+import dropdown_icon from "../../assets/drop_down.svg"
 import { Link } from "react-router-dom"
 import { ShopContext } from "../Context/ShopContext"
 import clsx from "clsx"

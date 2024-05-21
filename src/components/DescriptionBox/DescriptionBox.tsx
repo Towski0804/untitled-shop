@@ -22,7 +22,6 @@ export const DescriptionBox: React.FC<DescriptionBoxProps> = (props) => {
         className="descriptionbox-desc flex flex-col gap-6 p-12 pb-16 border border-gray-400
       max-md:text-sm max-md:p-6"
       >
-        <p>aaa</p>
         <p>{description}</p>
       </div>
     </div>

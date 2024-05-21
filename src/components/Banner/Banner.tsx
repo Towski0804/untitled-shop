@@ -1,4 +1,3 @@
-import hand_icon from "../../assets/hand_icon.png"
 import arrow_icon from "../../assets/arrow.svg"
 import hero_image from "../../assets/hero_image.png"
 
