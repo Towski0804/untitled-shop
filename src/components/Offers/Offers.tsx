@@ -1,6 +1,10 @@
+import { useNavigate } from "react-router-dom"
 import exclusive_image from "../../assets/exclusive_image.png"
+import { useMenuStore } from "../../stores/useMenuStore"
 
 export const Offers = () => {
+  const nav = useNavigate()
+  const { setMenu } = useMenuStore()
   return (
     <div
       className="offers w-[85%] h-[60vh] flex m-auto px-[100px] mb-[150px] bg-slate-300 justify-between overflow-hidden
@@ -33,6 +37,11 @@ export const Offers = () => {
         max-lg:w-[160px] max-lg:h-[40px] max-lg:text-base
         max-md:w-[140px] max-md:h-[30px] max-md:text-sm
         max-sm:w-[120px] max-sm:h-[25px] max-sm:text-xs max-sm:mt-3"
+          onClick={() => {
+            window.scrollTo(0, 0)
+            nav("/women")
+            setMenu("Women")
+          }}
         >
           Check Now
         </button>

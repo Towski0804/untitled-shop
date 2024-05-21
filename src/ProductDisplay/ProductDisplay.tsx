@@ -9,8 +9,7 @@ interface ProductDisplayProps {
 }
 
 export const ProductDisplay: React.FC<ProductDisplayProps> = (props) => {
-  const { _id, name, category, image, old_price, new_price, description } =
-    props.product
+  const { _id, name, image, old_price, new_price, description } = props.product
   const { addToCart } = useContext(ShopContext)
   return (
     <div
