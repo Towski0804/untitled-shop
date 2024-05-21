@@ -13,7 +13,7 @@ export const Banner: React.FC<BannerProps> = ({ newCollectionsRef }) => {
     }
   }
   return (
-    <div className="banner flex min-h-[50vh] bg-gradient-to-b from-fuchsia-100 to-white overflow-hidden max-sm:flex-col">
+    <div className="banner flex min-h-[50vh] bg-indigo-50 overflow-hidden max-sm:flex-col">
       <div className="banner-left flex-1 flex flex-col justify-center gap-5 pl-[130px] max-xl:pl-[100px] max-lg:pl-[80px] max-md:pl-[30px]">
         <div>
           <div className="hand-icon flex items-center gap-5">

@@ -3,7 +3,7 @@ import exclusive_image from "../../assets/exclusive_image.png"
 export const Offers = () => {
   return (
     <div
-      className="offers w-[85%] h-[60vh] flex m-auto px-[100px] mb-[150px] bg-gradient-to-b from-[#0e2c38] to-[#e1ffea22] justify-between
+      className="offers w-[85%] h-[60vh] flex m-auto px-[100px] mb-[150px] bg-gradient-to-b from-slate-300 to-red-100 justify-between overflow-hidden
     max-xl:px-[80px] max-xl:mb-[120px]
     max-lg:px-[60px] max-lg:mb-[80px] max-lg:h-[40vh]
     max-md:mb-[60px]

@@ -12,7 +12,7 @@ interface ItemProps {
 export const Item: React.FC<ItemProps> = (props) => {
   const { id, img, name, old_price, new_price } = props
   return (
-    <div className="item w-[280px] m-auto max-xl:w-[220px] max-xl:text-base max-lg:w-[170px] max-lg:text-sm max-md:w-[120px] max-md:text-[13px] max-sm:w-[160px]">
+    <div className="item w-[280px] m-auto text-base max-xl:w-[220px] max-lg:w-[170px] max-lg:text-sm max-md:w-[120px] max-md:text-xs max-sm:w-[160px]">
       <Link to={`/product/${id}`}>
         <img
           src={img}
@@ -21,7 +21,9 @@ export const Item: React.FC<ItemProps> = (props) => {
           onClick={() => window.scrollTo(0, 0)}
         />
       </Link>
-      <p className="my-[6px] min-h-[3em]">{name}</p>
+      <p className="my-[6px] h-[48px] line-clamp-2 max-lg:h-[40px] max-md:h-[32px]">
+        {name}
+      </p>
       <div className="item-prices flex gap-5">
         <div className="item-price-new text-zinc-700 font-semibold">
           ${new_price}
