@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react"
 import logo from "../../assets/logo.svg"
-import cart_icon from "../../assets/cart_icon.png"
+import cart_icon from "../../assets/cart_icon.svg"
 import dropdown_icon from "../../assets/drop_down.png"
 import { Link } from "react-router-dom"
 import { ShopContext } from "../Context/ShopContext"
@@ -54,9 +54,9 @@ export const Navbar: React.FC = () => {
           >
             <Link to={item === "Shop" ? "/" : `/${item}`}>{item}</Link>
             {menu === item ? (
-              <hr className="b-1 w-[80%] h-[3px] bg-red-600 rounded-lg"></hr>
+              <hr className="w-[90%] h-[3px] bg-indigo-500 rounded border-none transition-all duration-300 ease-in-out scale-x-100"></hr>
             ) : (
-              <hr className="b-1 h-[3px] w-[80%] bg-transparent border-transparent"></hr>
+              <hr className="w-[90%] h-[3px] bg-transparent border-none transition-all duration-300 ease-in-out scale-x-0"></hr>
             )}
           </li>
         ))}
@@ -84,9 +84,9 @@ export const Navbar: React.FC = () => {
             <img
               src={cart_icon}
               alt="cart_icon"
-              className="w-[40px] max-lg:w-7"
+              className="w-[32px] max-lg:w-7"
             />
-            <div className="flex absolute w-[22px] h-[22px] justify-center items-center rounded-full bg-red-500 text-white text-sm top-[-8px] right-[-10px] max-lg:w-[16px] max-lg:h-[16px] max-lg:text-[10px]">
+            <div className="flex absolute w-[18px] h-[18px] justify-center items-center rounded-full bg-red-500 text-white text-xs top-[-8px] right-[-10px] max-lg:w-[16px] max-lg:h-[16px] max-lg:text-[10px]">
               {getTotalCartItems()}
             </div>
           </div>

@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
-import start_icon from "../assets/star_icon.png"
-import start_dull_icon from "../assets/star_dull_icon.png"
+import start_icon from "../assets/star_icon.svg"
+import start_dull_icon from "../assets/star_dull_icon.svg"
 import "./ProductDisplay.scss"
 import { ShopContext } from "../components/Context/ShopContext"
 
@@ -9,7 +9,8 @@ interface ProductDisplayProps {
 }
 
 export const ProductDisplay: React.FC<ProductDisplayProps> = (props) => {
-  const { _id, name, image, old_price, new_price, description } = props.product
+  const { _id, name, category, image, old_price, new_price, description } =
+    props.product
   const { addToCart } = useContext(ShopContext)
   return (
     <div
@@ -65,7 +66,7 @@ export const ProductDisplay: React.FC<ProductDisplayProps> = (props) => {
         </h1>
         {/* this is currently static */}
         <div
-          className="pd-stars flex items-center mt-4 gap-1 text-sm
+          className="pd-stars flex items-center mt-4 gap-1 text-sm [&>img]:w-4
         max-xl:gap-[3px] text-[13px]
         max-lg:[&>img]:w-4
         max-md:[&>img]:w-3
@@ -136,9 +137,6 @@ export const ProductDisplay: React.FC<ProductDisplayProps> = (props) => {
         max-md:text-[10px]
         max-sm:text-base"
         >
-          <p>
-            <span>Category: </span>Women, T-Shirt, Crop Top
-          </p>
           <p className="pd-right-category">
             <span>Tags: </span>Modern, Latest
           </p>

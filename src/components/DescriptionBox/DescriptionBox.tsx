@@ -1,4 +1,9 @@
-export const DescriptionBox = () => {
+type DescriptionBoxProps = {
+  description: string
+}
+
+export const DescriptionBox: React.FC<DescriptionBoxProps> = (props) => {
+  const { description } = props
   return (
     <div
       className="descriptionbox my-[70px] mx-[170px]
@@ -17,22 +22,9 @@ export const DescriptionBox = () => {
         className="descriptionbox-desc flex flex-col gap-6 p-12 pb-16 border border-gray-400
       max-md:text-sm max-md:p-6"
       >
-        <p>
-          An e-commerce platform is a virtual marketplace on the internet where
-          buying and selling of products or services take place. It acts as an
-          online hub where businesses and individuals can exhibit their
-          offerings, engage with customers, and carry out transactions without
-          the necessity for physical locations. E-commerce websites have become
-          highly favored due to their convenience, accessibility, and global
-          outreach.
-        </p>
-        <p>
-          Typically, these websites feature products or services accompanied by
-          comprehensive descriptions, images, prices, and any available options
-          such as sizes or colors. Each product typically has its dedicated page
-          containing pertinent information.
-        </p>
+        <p>aaa</p>
+        <p>{description}</p>
       </div>
     </div>
-  );
-};
+  )
+}
