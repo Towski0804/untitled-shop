@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react"
 import { ajax } from "../../lib/ajax"
 
 interface ShopContextType {
+  productMetadata: Product[]
+  setProductMetadataHelper: () => void
   getProductDetail: (id: string) => Promise<Product | undefined>
   cartItems: Record<string, number>
   addToCart: (id: string) => void
@@ -10,6 +12,8 @@ interface ShopContextType {
   getTotalCartItems: () => number
 }
 export const ShopContext = React.createContext<ShopContextType>({
+  productMetadata: [],
+  setProductMetadataHelper: () => {},
   getProductDetail: () => Promise.resolve({} as Product),
   cartItems: {},
   addToCart: () => {},
@@ -25,6 +29,8 @@ interface ShopContextProviderProps {
 const ShopContextProvider: React.FC<
   React.PropsWithChildren<ShopContextProviderProps>
 > = (props) => {
+  const [cartItems, setCartItems] = useState<Record<string, number>>({})
+  const [productMetadata, setProductMetadata] = useState<Product[]>([])
   useEffect(() => {
     if (localStorage.getItem("auth-token")) {
       ajax
@@ -44,7 +50,20 @@ const ShopContextProvider: React.FC<
         })
     }
   }, [])
-  const [cartItems, setCartItems] = useState<Record<string, number>>({})
+
+  // when cartItems change, the metadata of product (e.g. price, etc.) would be fetched again
+  useEffect(() => {
+    setProductMetadataHelper()
+  }, [cartItems])
+
+  const setProductMetadataHelper = () => {
+    if (!cartItems) return
+    const keys = Object.keys(cartItems)
+    keys.map(async (key) => {
+      const product = (await ajax.get(`/product/${key}`)).data
+      setProductMetadata((prev) => [...prev, product])
+    })
+  }
 
   const getProductDetail = async (id: string): Promise<Product | undefined> => {
     let productDetail: Product | undefined
@@ -114,12 +133,12 @@ const ShopContextProvider: React.FC<
 
   const getTotalCartAmount = () => {
     if (!cartItems) return 0
-    let unit_price: number
     return Object.keys(cartItems).reduce((acc, id) => {
-      ajax
-        .get(`/product/${id}`)
-        .then((res) => (unit_price = res.data.new_price))
-      return acc + unit_price * cartItems[id]
+      const product = productMetadata.find((p) => p._id === id)
+      if (product) {
+        return acc + product.new_price * cartItems[id]
+      }
+      return acc
     }, 0)
   }
   const getTotalCartItems = () => {
@@ -130,6 +149,8 @@ const ShopContextProvider: React.FC<
   }
 
   const contextValue = {
+    productMetadata,
+    setProductMetadataHelper,
     getProductDetail,
     cartItems,
     addToCart,

@@ -5,8 +5,12 @@ import { Input } from "../lib/Input"
 import "./CartItems.scss"
 
 export const CartItems = () => {
-  const { all_product, cartItems, removeFromCart, getTotalCartAmount } =
-    useContext(ShopContext)
+  const {
+    cartItems,
+    removeFromCart,
+    getTotalCartAmount,
+    productMetadata: all_product
+  } = useContext(ShopContext)
   return (
     <div
       className="cartitems my-[100px] mx-[170px]
@@ -25,40 +29,45 @@ export const CartItems = () => {
         <p>Remove</p>
       </div>
       <hr className="h-[2px] bg-[#e2e2e2]" />
-      {all_product.map((p, i) => {
-        if (cartItems[p._id] > 0)
-          return (
-            <div key={i}>
-              <div className="cartitems-format caritems-format-main">
-                <img
-                  src={p.image}
-                  alt=""
-                  className="product-icon h-[75px] object-cover
-                max-xl:h-[50px]"
-                />
-                <p>{p.name}</p>
-                <p>${p.new_price}</p>
-                <button
-                  className="cartitems-quantity border
-                max-xl:w-10 max-xl:h-8"
-                >
-                  {cartItems[p._id]}
-                </button>
-                <p>${p.new_price * cartItems[p._id]}</p>
-                <img
-                  src={remove_icon}
-                  alt=""
-                  onClick={() => {
-                    removeFromCart(p._id)
-                  }}
-                  className="w-[16px] mx-4 cursor-pointer
-                  max-xl:m-auto"
-                />
+      {Object.keys(cartItems).map((id, index) => {
+        let p: Product
+        for (let i = 0; i < all_product.length; i++) {
+          if (all_product[i]._id === id) {
+            p = all_product[i]
+            return (
+              <div key={index}>
+                <div className="cartitems-format caritems-format-main">
+                  <img
+                    src={p.image}
+                    alt=""
+                    className="product-icon h-[75px] object-cover
+        max-xl:h-[50px]"
+                  />
+                  <p>{p.name}</p>
+                  <p>${p.new_price}</p>
+                  <button
+                    className="cartitems-quantity border
+        max-xl:w-10 max-xl:h-8"
+                  >
+                    {cartItems[p._id]}
+                  </button>
+                  <p>${(p.new_price * cartItems[p._id]).toFixed(2)}</p>
+                  <img
+                    src={remove_icon}
+                    alt=""
+                    onClick={() => {
+                      removeFromCart(p._id)
+                    }}
+                    className="w-[16px] mx-4 cursor-pointer
+          max-xl:m-auto"
+                  />
+                </div>
+                <hr className="h-[2px] bg-[#e2e2e2]" />
               </div>
-              <hr className="h-[2px] bg-[#e2e2e2]" />
-            </div>
-          )
-        return null
+            )
+            break
+          }
+        }
       })}
       <div
         className="cartitems-down flex my-[100px] space-y-4
@@ -72,7 +81,7 @@ export const CartItems = () => {
           <div>
             <div className="cartitems-total-items">
               <p>Subtotal</p>
-              <p>${getTotalCartAmount()}</p>
+              <p>${getTotalCartAmount().toFixed(2)}</p>
             </div>
             <hr />
             <div className="cartitems-total-items">
@@ -82,7 +91,7 @@ export const CartItems = () => {
             <hr />
             <div className="cartitems-total-items">
               <h3>Total</h3>
-              <h3>${getTotalCartAmount()}</h3>
+              <h3>${getTotalCartAmount().toFixed(2)}</h3>
             </div>
           </div>
           <button
