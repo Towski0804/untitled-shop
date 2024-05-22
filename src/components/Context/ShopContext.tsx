@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { ajax } from "../../lib/ajax"
 
 interface ShopContextType {
-  all_product: Product[]
+  getProductDetail: (id: string) => Promise<Product | undefined>
   cartItems: Record<string, number>
   addToCart: (id: string) => void
   removeFromCart: (id: string) => void
@@ -10,7 +10,7 @@ interface ShopContextType {
   getTotalCartItems: () => number
 }
 export const ShopContext = React.createContext<ShopContextType>({
-  all_product: [],
+  getProductDetail: () => Promise.resolve({} as Product),
   cartItems: {},
   addToCart: () => {},
   removeFromCart: () => {},
@@ -25,9 +25,7 @@ interface ShopContextProviderProps {
 const ShopContextProvider: React.FC<
   React.PropsWithChildren<ShopContextProviderProps>
 > = (props) => {
-  const [all_product, setAllProduct] = useState<Product[]>([])
   useEffect(() => {
-    ajax.get("/product").then((res) => setAllProduct(res.data))
     if (localStorage.getItem("auth-token")) {
       ajax
         .post(
@@ -47,6 +45,23 @@ const ShopContextProvider: React.FC<
     }
   }, [])
   const [cartItems, setCartItems] = useState<Record<string, number>>({})
+
+  const getProductDetail = async (id: string): Promise<Product | undefined> => {
+    let productDetail: Product | undefined
+    await ajax
+      .get(`/product/${id}`)
+      .then((res) => {
+        productDetail = res.data
+      })
+      .catch((err) => {
+        throw new Error(err.response.data.error)
+      })
+    if (!productDetail) {
+      alert("Failed to get product detail")
+    }
+    return productDetail
+  }
+
   const addToCart = (id: string) => {
     setCartItems((prev) => {
       const cartItems = { ...prev }
@@ -99,12 +114,12 @@ const ShopContextProvider: React.FC<
 
   const getTotalCartAmount = () => {
     if (!cartItems) return 0
+    let unit_price: number
     return Object.keys(cartItems).reduce((acc, id) => {
-      const product = all_product.find((p) => p._id === id)
-      if (product) {
-        return acc + product.new_price * cartItems[id]
-      }
-      return acc
+      ajax
+        .get(`/product/${id}`)
+        .then((res) => (unit_price = res.data.new_price))
+      return acc + unit_price * cartItems[id]
     }, 0)
   }
   const getTotalCartItems = () => {
@@ -115,7 +130,7 @@ const ShopContextProvider: React.FC<
   }
 
   const contextValue = {
-    all_product,
+    getProductDetail,
     cartItems,
     addToCart,
     removeFromCart,

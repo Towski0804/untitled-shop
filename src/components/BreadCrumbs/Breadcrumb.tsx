@@ -15,7 +15,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = (props) => {
     max-sm:text-[10px]"
     >
       HOME <img src={arrow_icon} alt="" /> SHOP
-      <img src={arrow_icon} alt="" /> {product.category.toUpperCase()}
+      <img src={arrow_icon} alt="" /> {product.category?.toUpperCase()}
       <img src={arrow_icon} alt="" /> {product.name}
     </div>
   )

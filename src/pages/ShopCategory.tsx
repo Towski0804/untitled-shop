@@ -1,7 +1,7 @@
-import React, { useContext } from "react"
-import { ShopContext } from "../components/Context/ShopContext"
+import { useEffect, useState } from "react"
 import dropdown_icon from "../assets/dropdown_icon.svg"
 import { Item } from "../components/Item/Item"
+import { ajax } from "../lib/ajax"
 
 interface ShopCategoryProps {
   banner: string
@@ -9,7 +9,17 @@ interface ShopCategoryProps {
 }
 
 export const ShopCategory: React.FC<ShopCategoryProps> = (props) => {
-  const { all_product } = useContext(ShopContext) ?? {}
+  const [all_product, setAllProduct] = useState<Product[]>([])
+  useEffect(() => {
+    const fetchData = async () => {
+      await ajax
+        .get(`/product/category/${props.category}`)
+        .then((res) => setAllProduct(res.data))
+        .catch((err) => alert(err.response.data.error))
+    }
+    fetchData()
+  }, [props.category])
+
   return (
     <div className="shop-category flex flex-col items-center">
       <img
