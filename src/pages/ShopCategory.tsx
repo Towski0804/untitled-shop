@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import dropdown_icon from "../assets/dropdown_icon.svg"
 import { Item } from "../components/Item/Item"
 import { ajax } from "../lib/ajax"
+import useSWRInfinite from "swr/infinite"
 
 interface ShopCategoryProps {
   banner: string
@@ -9,16 +10,28 @@ interface ShopCategoryProps {
 }
 
 export const ShopCategory: React.FC<ShopCategoryProps> = (props) => {
-  const [all_product, setAllProduct] = useState<Product[]>([])
-  useEffect(() => {
-    const fetchData = async () => {
-      await ajax
-        .get(`/product/category/${props.category}`)
-        .then((res) => setAllProduct(res.data))
-        .catch((err) => alert(err.response.data.error))
-    }
-    fetchData()
-  }, [props.category])
+  const [noMore, setNoMore] = useState(false)
+  const [isLoadingMore, setIsLoadingMore] = useState(false)
+  const handleLoadMore = () => {
+    setIsLoadingMore(true)
+    setSize(size + 1)
+  }
+  const getKey = (pageIndex: number, previousPageData: []) => {
+    if (previousPageData && !previousPageData.length) return null
+    return `/product/category/${props.category}?page=${pageIndex + 1}`
+  }
+
+  const fetcher = (url: string) =>
+    ajax
+      .get(url)
+      .then((res) => {
+        setNoMore(res.data.length < 10)
+        setIsLoadingMore(false)
+        return res.data
+      })
+      .catch((err) => alert(err.response.data.error))
+
+  const { data, size, setSize, isValidating } = useSWRInfinite(getKey, fetcher)
 
   return (
     <div className="shop-category flex flex-col items-center">
@@ -50,30 +63,37 @@ export const ShopCategory: React.FC<ShopCategoryProps> = (props) => {
       max-md:w-[95%] 
       max-sm:grid-cols-2"
       >
-        {all_product?.map((item, index) => {
-          if (props.category === item.category) {
-            return (
-              <Item
-                key={index}
-                id={item._id}
-                name={item.name}
-                img={item.image}
-                new_price={item.new_price}
-                old_price={item.old_price}
-              />
-            )
-          } else {
-            return null
-          }
+        {data?.map((productsList, index) => {
+          return productsList?.map((item: Product, index: number) => {
+            if (props.category === item.category) {
+              return (
+                <Item
+                  key={index}
+                  id={item._id}
+                  name={item.name}
+                  img={item.image}
+                  new_price={item.new_price}
+                  old_price={item.old_price}
+                />
+              )
+            } else {
+              return null
+            }
+          })
         })}
       </div>
-      <div
+      <button
         className="shop-category-loadmore flex justify-center items-center m-[150px_auto] w-[200px] h-[60px] text-lg border-y-2 cursor-pointer
       max-xl:m-[100_auto] max-xl:w-[180px] max-xl:h-[50px] max-xl:text-base
       max-md:w-[160px] max-md:h-[40px] max-md:text-sm max-md:m-[60px_auto]"
+        onClick={handleLoadMore}
       >
-        Explore More
-      </div>
+        {isLoadingMore
+          ? `Loading More`
+          : noMore
+            ? `No More Products`
+            : `Find More`}
+      </button>
     </div>
   )
 }
