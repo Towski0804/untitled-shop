@@ -9,15 +9,27 @@ interface ShopCategoryProps {
   category: string
 }
 
+type responseType = {
+  products: Product[]
+  total: number
+  page: number
+}
+
 export const ShopCategory: React.FC<ShopCategoryProps> = (props) => {
+  const [total, setTotal] = useState(0)
   const [noMore, setNoMore] = useState(false)
   const [isLoadingMore, setIsLoadingMore] = useState(false)
   const handleLoadMore = () => {
     setIsLoadingMore(true)
     setSize(size + 1)
   }
-  const getKey = (pageIndex: number, previousPageData: []) => {
-    if (previousPageData && !previousPageData.length) return null
+  const getKey = (pageIndex: number, previousPageData: responseType | null) => {
+    if (
+      previousPageData &&
+      previousPageData.products &&
+      !previousPageData.products.length
+    )
+      return null
     return `/product/category/${props.category}?page=${pageIndex + 1}`
   }
 
@@ -25,8 +37,9 @@ export const ShopCategory: React.FC<ShopCategoryProps> = (props) => {
     ajax
       .get(url)
       .then((res) => {
-        setNoMore(res.data.length < 10)
         setIsLoadingMore(false)
+        setNoMore(res.data.products.length < 10)
+        setTotal(res.data.total)
         return res.data
       })
       .catch((err) => alert(err.response.data.error))
@@ -48,7 +61,7 @@ export const ShopCategory: React.FC<ShopCategoryProps> = (props) => {
       max-md:w-[95%] "
       >
         <p>
-          <span>Showing 1 - 12</span> out of 36 products
+          <span>Showing {size * 10}</span> out of {total} products
         </p>
         <div
           className="shop-category-sort flex items-center p-[10px_20px] rounded-[40px] border-neutral-600 border-2
@@ -64,7 +77,7 @@ export const ShopCategory: React.FC<ShopCategoryProps> = (props) => {
       max-sm:grid-cols-2"
       >
         {data?.map((productsList) => {
-          return productsList?.map((item: Product, index: number) => {
+          return productsList?.products.map((item: Product, index: number) => {
             if (props.category === item.category) {
               return (
                 <Item
@@ -89,10 +102,10 @@ export const ShopCategory: React.FC<ShopCategoryProps> = (props) => {
         onClick={handleLoadMore}
         disabled={isLoadingMore || noMore || isValidating} // Disable when loading or no more data
       >
-        {isLoadingMore
-          ? `Loading More`
-          : noMore
-            ? `No More Products`
+        {noMore
+          ? `No More Products`
+          : isLoadingMore
+            ? `Loading ...`
             : `Find More`}
       </button>
     </div>
