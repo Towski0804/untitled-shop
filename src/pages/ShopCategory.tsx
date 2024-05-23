@@ -63,7 +63,7 @@ export const ShopCategory: React.FC<ShopCategoryProps> = (props) => {
       max-md:w-[95%] 
       max-sm:grid-cols-2"
       >
-        {data?.map((productsList, index) => {
+        {data?.map((productsList) => {
           return productsList?.map((item: Product, index: number) => {
             if (props.category === item.category) {
               return (
@@ -87,6 +87,7 @@ export const ShopCategory: React.FC<ShopCategoryProps> = (props) => {
       max-xl:m-[100_auto] max-xl:w-[180px] max-xl:h-[50px] max-xl:text-base
       max-md:w-[160px] max-md:h-[40px] max-md:text-sm max-md:m-[60px_auto]"
         onClick={handleLoadMore}
+        disabled={isLoadingMore || noMore || isValidating} // Disable when loading or no more data
       >
         {isLoadingMore
           ? `Loading More`
