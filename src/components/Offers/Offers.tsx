@@ -7,7 +7,7 @@ export const Offers = () => {
   const { setMenu } = useMenuStore()
   return (
     <div
-      className="offers w-[85%] h-[60vh] flex m-auto px-[100px] mb-[150px] bg-slate-300 justify-between overflow-hidden
+      className="offers w-[85%] h-[400px] flex m-auto px-[100px] mb-[150px] bg-slate-300 justify-between overflow-hidden
     max-xl:px-[80px] max-xl:mb-[120px]
     max-lg:px-[60px] max-lg:mb-[80px] max-lg:h-[40vh]
     max-md:mb-[60px]

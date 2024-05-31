@@ -3,11 +3,11 @@ import { Input } from "../lib/Input"
 export const Newsletter = () => {
   return (
     <div
-      className="newsletter w-3/4 min-h-[40vh] flex flex-col items-center justify-center mx-auto px-[100px] gap-7 bg-indigo-50 mb-10
+      className="newsletter w-3/4 h-[400px] flex flex-col items-center justify-center mx-auto px-[100px] gap-7 bg-indigo-50 mb-10
     max-xl:px-[80px] max-xl:mb-8 max-xl:gap-5 max-xl:[&>h1]:text-4xl
     max-lg:mb-5 max-lg:[&>h1]:text-3xl
     max-md:mb-3 max-md:h-[35vh] max-md:w-5/6 max-md:[&>h1]:text-lg
-    max-sm:p-0 max-sm:gap-4 max-sm:h-[25vh] max-sm:w-full max-sm:[&>h1]:text-base"
+    max-sm:px-2 max-sm:gap-4 max-sm:h-[25vh] max-sm:w-full max-sm:[&>h1]:text-base"
     >
       <h1 className="text-zinc-800 text-5xl font-semibold">
         Get the latest updates from us
