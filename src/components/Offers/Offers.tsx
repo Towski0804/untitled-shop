@@ -59,6 +59,7 @@ export const Offers = () => {
         max-lg:w-[200px]
         max-md:w-[180px]
         max-sm:w-[120px]"
+          loading="lazy"
         />
       </div>
     </div>

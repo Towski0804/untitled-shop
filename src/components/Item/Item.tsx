@@ -19,6 +19,7 @@ export const Item: React.FC<ItemProps> = (props) => {
           alt=""
           className="hover:scale-105 duration-500 w-[280px] max-xl:w-[220px] max-lg:w-[170px] max-md:w-[120px] max-sm:w-[160px]"
           onClick={() => window.scrollTo(0, 0)}
+          loading="lazy"
         />
       </Link>
       <p className="my-[6px] h-[48px] line-clamp-2 max-lg:h-[40px] max-md:h-[32px]">
