@@ -1,4 +1,4 @@
-import { Input } from "../lib/Input"
+import { MyInput } from "../lib/MyInput.tsx"
 
 export const Newsletter = () => {
   return (
@@ -28,7 +28,7 @@ export const Newsletter = () => {
       max-md:w-[400px] max-md:h-[40px]
       max-sm:w-[290px]"
       >
-        <Input
+        <MyInput
           type="email"
           placeholder="Your Email"
           className="w-[500px] border-none

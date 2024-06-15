@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Input } from "../components/lib/Input"
+import { MyInput } from "../components/lib/MyInput.tsx"
 import { ajax } from "../lib/ajax"
 
 type formData = {
@@ -80,7 +80,7 @@ export const LoginSignUp: React.FC = () => {
         max-xl:gap-5 max-xl:mt-5"
         >
           {formState === "Sign Up" ? (
-            <Input
+            <MyInput
               name="name"
               value={formData.name}
               type="text"
@@ -88,14 +88,14 @@ export const LoginSignUp: React.FC = () => {
               onChange={changeHandler}
             />
           ) : null}
-          <Input
+          <MyInput
             name="email"
             value={formData.email}
             type="email"
             placeholder="Email"
             onChange={changeHandler}
           />
-          <Input
+          <MyInput
             name="password"
             value={formData.password}
             type="password"

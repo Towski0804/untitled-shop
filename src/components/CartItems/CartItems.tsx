@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { ShopContext } from "../Context/ShopContext"
 import remove_icon from "../../assets/cart_cross_icon.svg"
-import { Input } from "../lib/Input"
+import { MyInput } from "../lib/MyInput.tsx"
 import "./CartItems.scss"
 
 export const CartItems = () => {
@@ -65,7 +65,6 @@ export const CartItems = () => {
                 <hr className="h-[2px] bg-[#e2e2e2]" />
               </div>
             )
-            break
           }
         }
       })}
@@ -104,7 +103,7 @@ export const CartItems = () => {
         <div className="cartitems-promocode flex-1 font-medium">
           <p>If you have a promo code, Enter it here!</p>
           <div className="cartitems-codebox mt-4 h-[58px]">
-            <Input
+            <MyInput
               type="text"
               placeholder="promo code"
               className="h-[58px]

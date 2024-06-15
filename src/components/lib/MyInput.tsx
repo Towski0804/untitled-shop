@@ -8,7 +8,7 @@ interface InputProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const Input: React.FC<InputProps> = (props) => {
+export const MyInput: React.FC<InputProps> = (props) => {
   const { type, placeholder, className } = props;
   return (
     <input
