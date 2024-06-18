@@ -29,45 +29,47 @@ export const CartItems = () => {
         <p>Remove</p>
       </div>
       <hr className="h-[2px] bg-[#e2e2e2]" />
-      {Object.keys(cartItems).map((id, index) => {
-        let p: Product
-        for (let i = 0; i < all_product.length; i++) {
-          if (all_product[i]._id === id) {
-            p = all_product[i]
-            return (
-              <div key={index}>
-                <div className="cartitems-format caritems-format-main">
-                  <img
-                    src={p.image}
-                    alt=""
-                    className="product-icon h-[75px] object-cover
+      {cartItems
+        ? Object.keys(cartItems).map((id, index) => {
+            let p: Product
+            for (let i = 0; i < all_product.length; i++) {
+              if (all_product[i]._id === id) {
+                p = all_product[i]
+                return (
+                  <div key={index}>
+                    <div className="cartitems-format caritems-format-main">
+                      <img
+                        src={p.image}
+                        alt=""
+                        className="product-icon h-[75px] object-cover
         max-xl:h-[50px]"
-                  />
-                  <p>{p.name}</p>
-                  <p>${p.new_price}</p>
-                  <button
-                    className="cartitems-quantity border
+                      />
+                      <p>{p.name}</p>
+                      <p>${p.new_price}</p>
+                      <button
+                        className="cartitems-quantity border
         max-xl:w-10 max-xl:h-8"
-                  >
-                    {cartItems[p._id]}
-                  </button>
-                  <p>${(p.new_price * cartItems[p._id]).toFixed(2)}</p>
-                  <img
-                    src={remove_icon}
-                    alt=""
-                    onClick={() => {
-                      removeFromCart(p._id)
-                    }}
-                    className="w-[16px] mx-4 cursor-pointer
+                      >
+                        {cartItems[p._id]}
+                      </button>
+                      <p>${(p.new_price * cartItems[p._id]).toFixed(2)}</p>
+                      <img
+                        src={remove_icon}
+                        alt=""
+                        onClick={() => {
+                          removeFromCart(p._id)
+                        }}
+                        className="w-[16px] mx-4 cursor-pointer
           max-xl:m-auto"
-                  />
-                </div>
-                <hr className="h-[2px] bg-[#e2e2e2]" />
-              </div>
-            )
-          }
-        }
-      })}
+                      />
+                    </div>
+                    <hr className="h-[2px] bg-[#e2e2e2]" />
+                  </div>
+                )
+              }
+            }
+          })
+        : null}
       <div
         className="cartitems-down flex my-[100px] space-y-4
       max-xl:my-10 max-xl:flex-col max-lg:gap-10"
